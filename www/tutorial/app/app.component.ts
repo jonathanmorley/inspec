@@ -10,8 +10,8 @@ const INSPEC_PROMPT = '[0;32minspec> [0m';
 
 @Component({
   selector: '[inspec-tutorial]',
-  templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css'],
+  templateUrl: '/app/app.component.html',
+  styleUrls: ['/app/app.component.css'],
   providers: [ HTTP_PROVIDERS ],
   directives: [ XtermTerminalComponent ]
 })
