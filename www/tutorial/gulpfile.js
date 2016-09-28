@@ -8,11 +8,13 @@ var gulp = require('gulp'),
     useref = require('gulp-useref'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
-    minifyCss = require('gulp-clean-css');
+    minifyCss = require('gulp-clean-css'),
+    babel = require('gulp-babel');
 
 gulp.task('webpack', function() {
   return gulp.src('app/main.ts')
     .pipe(webpack( require('./config/webpack.config.js') ))
+    .pipe(babel({ presets: ['es2015'] }))
     .pipe(gulp.dest('dist/'));
 })
 
