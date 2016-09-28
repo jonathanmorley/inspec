@@ -23,9 +23,11 @@ module.exports = {
               test: /\.css$/, loader: 'style!css',
             },
             {
-              test: /\.js$/,
-              exclude: /.spec.js/,
-              loader: "uglify"
+             test: /\.js$/,
+             loader: 'babel',
+             query: {
+                presets: ['es2015']
+             }
             }
         ],
 
@@ -34,4 +36,14 @@ module.exports = {
             { test: /\.js$/, loader: "source-map-loader" }
         ]
     },
+    //  plugins: [
+    //     new webpack.optimize.UglifyJsPlugin({
+    //         compress: {
+    //             warnings: false,
+    //         },
+    //         output: {
+    //             comments: false,
+    //         },
+    //     }),
+    // ]
 };
