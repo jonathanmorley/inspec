@@ -27,11 +27,15 @@ platforms:
   - name: mint-17.2-cinnamon
     driver_config:
       box: artem-sidorenko/mint-17.2-cinnamon
+  - name: windows-2008r2
+    driver_config:
+      box: opentable/win-2008r2-standard-amd64-nocm
+  - name: windows-2012r2
+    driver_config:
+      box: opentable/win-2012r2-standard-amd64-nocm
 
 suites:
   - name: default
     run_list:
-      - recipe[apt]
-      - recipe[yum]
       - recipe[os_prepare]
     attributes:

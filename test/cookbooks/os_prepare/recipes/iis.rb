@@ -23,3 +23,10 @@ powershell_script 'Create-WebApplication' do
   New-WebApplication -Name "TestApp" -Site 'Default Web Site' -PhysicalPath "C:\\www\\inetpub\\Test" -ApplicationPool "DefaultAppPool"
   EOH
 end
+
+powershell_script 'Create-WebSite' do
+  code <<-EOH
+  Import-Module WebAdministration
+  New-WebSite -Name 'Test Site' -PhysicalPath 'C:\\www\\inetpub\\Test' -ApplicationPool 'DefaultAppPool'
+  EOH
+end

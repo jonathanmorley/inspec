@@ -4,10 +4,13 @@
 #
 # prepare all operating systems with the required configuration
 
+include_recipe 'apt' if 'debian' == node['platform_family']
+include_recipe 'yum' if ['rhel', 'fedora'].include? node['platform_family']
+
 # container preparation
 include_recipe('os_prepare::prep_container')
 
-# confgure ssh
+# configure ssh
 include_recipe('os_prepare::ssh')
 
 # basic tests

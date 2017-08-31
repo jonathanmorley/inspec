@@ -11,6 +11,13 @@ end
 # test the site without the iis resource
 describe powershell("Get-Website") do
   its(:stdout) {should match '.*?Default Web Site.*?'}
+  its(:stdout) {should match '.*?Test Site.*?'}
+end
+
+# test the site without the iis resource
+describe powershell("Get-Website -Name 'Default Web Site'") do
+  its(:stdout) {should match '.*?Default Web Site.*?'}
+  its(:stdout) {should_not match '.*?Test Site.*?'}
 end
 
 # test the site with the resource
@@ -23,6 +30,14 @@ describe iis_site('Default Web Site') do
   its('bindings') { should include 'http *:80:' }
   it { should have_path('%SystemDrive%\\inetpub\\wwwroot') }
   its('path') { should eq '%SystemDrive%\\inetpub\\wwwroot' }
+end
+
+describe iis_site('Test Site') do
+  it { should exist }
+  it { should be_running }
+  it { should have_app_pool('DefaultAppPool') }
+  its('app_pool') { should eq 'DefaultAppPool' }
+  it { should have_path('%SystemDrive%\\inetpub\\Test') }
 end
 
 # test compatability with Serverspec
